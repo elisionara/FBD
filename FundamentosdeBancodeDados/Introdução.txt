@@ -1,0 +1,130 @@
+Fundamentos de Banco de Dados
+
+-Origem dos Bancos de dados
+#Déc.50:
+	* Surgimento dos computadores para uso militar e acadêmico e os dados são colocados em formulários de papel;
+	* fichas = registros, pastas = tabelas, armários = arquivos;
+	* arquivos guardam tabelas e tabelas armazenam registros;
+#Déc.60: 
+	* Arquivos de acesso direto: arquivos são guardados e acessados de forma direta;(acesso ALEATÓRIO)
+	* Arquivos de acesso sequencial: arquivos são guardados e acessados de forma sequencial;(acesso ORDENADO)
+	* CODASYL - COBOL;
+	* Composição dos BD's(princípios):
+	  1. Base de Dados;
+	  2. Sistema Gerenciador de Banco de Dados(SGBD);
+	  3. Linguagem de Exploração;(necessidade de uma única linguagem)
+	  4. Programas adicionais.
+	* Modelos antigos:
+	  1. Dados hierárquicos(modelos hierárquicos); 
+	  2. Modelos em rede.
+	* Modelo recente
+	  1. Modelo Relacional: é o mais utilizado nos dias atuais, onde a partir de um dado, pode-se criar um caminho até o dado que se quer através de um dado
+	     pesquisado.
+	* Criação de uma linguagem de exploração, o SQL.
+
+- Introdução ao MySQL
+# É grátis e é livre;
+# Principais comandos do MySQL:
+	* Linguagem DDL: comando de definição(criação) de uma estrutura para BD's.(create - database/table; alter - table; drop - table)
+	* Linguagem DML: comando de manipulação(alteração/exclusão/adição) de dados.(insert into; update; delete; truncate; select)
+	* Linguagem DQL: comando de solicitação(SELECT) de dados.
+	* Linguagem DCL: comando de controle(quais usuários podem acessar, alterar ou ainda adicionar os dados)
+	* Linguagem DTL: comando de transações(qualquer solicitação que pode ser atendida da melhor forma pelo programa).
+# Segue os padrões DICA:
+	* D urabilidade
+	* I solamento
+	* C onsistência
+	* A tomicidade
+
+- Criando um Banco de Dados
+#Criando um BD's: CREATE DATABASE nome;
+#Criando uma tabela: CREATE TABLE;
+#Tipos primitivos:(famílias)
+	* Numéricos;
+	inteiros(TinyInt - SmallInt - Int - MediumInt - BigInt)
+	reais(Decimal - Float - Double - Real)
+	lógicos(Bit - Boolean)
+	* Data/Tempo(Date - DateTime - TimeStamp - Time - Year);
+	* Literais;
+	caracteres(Char - VarChar)
+	texto(TinyText - Text - MediumText - LongText)
+	binário(TinyBlob - Blob - MediumBlob - LongBlob)
+	coleção(Enum - Set)
+	* Espaciais(Geometry - Point - Polygon - MultiPolygon).
+#Para adição de informações no BD's é necessário ter uma chave primária, para que não existam informações duplicadas;
+
+- Melhorando a Estrutura do BD's 
+#Comando drop(apaga/largar/abandonar um BD);
+#Counstrains = parâmetros;
+#Final do comando ; ;
+#utf8 = para erros de acentuação;
+ collate = 
+ utf8_general_ci = 
+ not null = preenchimento obriatório do dado;
+ set = 
+ describe = descreve todas as informações inseridas na tabela ou no BD's.
+
+-Inserindo dados na tabela(INSERT INTO)
+#Comandos DDL(Date Definition Language): linguagens de definição de dados(create database/create table);
+#Comandos DML(Date Manipulation Language) - INSERT INTO: comando de manipulação de dados, adição de dados dentro do BD's;
+#Uso do SELECT * FROM nome da tabela: concatena as informações dadas aos comandos executados.
+
+-Alterando a Estrutura de BD's(ALTER TABLE/DROP TABLE)
+#Tipos de alterações nas tabelas:
+	*alter table:
+	1. add column(adicionando espaço - variável);
+	2. drop column(apagando espaço - variável);
+	3. modify column(modificando a estrutura da variável)
+	4. not null default'': quando um parâmetro não pode passar em cima de outro;
+	5. change column: alterando(renomeando) o nome da variável e para fazer isso, é necessário colocar o comando + o nome velho + o nome novo
+	6. rename to: alterando(renomeando) o nome da tabela
+	* create table:
+	1. if not exists: se essa tabela não existir ela vai ser criada
+	2. if exists: se essa tabela existir, o usuário poderá alterar o BD's
+#unique:a variável não terá um id prório, ele só não terá dois nomes iiguais
+#unsigned: não vai aceitar variável com valor negativo
+
+-Manipulando linhas(UPDATE/DELETE/TRUNCATE)
+#update(forma de atualização): modificando linhas incorretas.
+#limit(limita): limita as lindas que determinado comando irá afetar.
+#delete(deleta):deleta as linhas determinadas pré determinadas por um comando anterior.
+#truncate(remove): tem a capacidade de remover todqas as linhas que antes foram inseridas e alteradas,
+não possibilita um Ctrl + z(desfazer/retornar).
+
+-Gerenciando cópias de segurança  MySQL
+#Backup(dump) de dados;
+#Para um backup:server-> data export-> seleciona os BD's-> 
+	1. Estrutura e os dados: dump structure and dat
+	2. Estrutura sem dados: dump structure only
+	3. Exportando apenas os dados: dump dat only
+#Para recuperar os dados do backup feito(em caso de perca de dados):
+	1. server-> data import-> import from self-contained file-> 
+	   procurar a pasta do dump-> start import
+
+- Select
+#Obtendo dados das tabelas:
+SELECT campos que desejam saber as informações * FROM nome da tabela correspondente
+WHERE campo que limita a busca
+ORDER BY campo que deseja a ordenação da tabela;
+
+SELECT(dessa vez sem *)campos  FROM nome tabela
+WHERE campo (uso dos operadores lógicos) AND/OR/NOT...;
+
+SELECT campos que desejam saber as informações * FROM nome da tabela correspondente
+WHERE campo que limita a busca
+ORDER BY campo que deseja a ordenação da tabela DESC(descendente), ASC(ascendente);
+
+SELECT campos que desejam saber as informações * FROM nome da tabela correspondente
+WHERE campo que limita a busca in (refinando as informações daquele campo) 
+ORDER BY campo que deseja a ordenação da tabela;
+
+SELECT campos que desejam saber as informações DISTINCT campo que deseja limitar FROM campo escolhido para limitar
+WHERE campo que limita a busca in (refinando as informações daquele campo) 
+ORDER BY campo que deseja a ordenação da tabela;
+
+#DQL(Data Query Language):comando de solicitação(SELECT) de dados.
+
+- Modelo Relacional
+#Conceitos importantes:
+	*Entidade:  
+	*Atributos: os atri
