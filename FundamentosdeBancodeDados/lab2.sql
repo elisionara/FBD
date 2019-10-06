@@ -6,12 +6,12 @@ default collate utf8_general_ci;
 use lab2;
 
 create table livro(
-codigo varchar(7),titulo varchar(100),cod_isbn varchar(7),edicao int,sinopse text,genero varchar(100),
+codigo smallint,titulo varchar(100),cod_isbn bigint,edicao varchar(10),sinopse text,genero varchar(100),
 primary key(codigo)
 )default charset = utf8;
 
 create table exemplar(
-codigo varchar(7),cod_livro varchar(7),ano varchar(4),cod_editora varchar(7),estado varchar(20),situacao varchar(20),
+codigo smallint,cod_livro smallint,ano year,cod_editora smallint,estado varchar(20),situacao varchar(20),
 primary key(codigo)
 )default charset = utf8;
 
