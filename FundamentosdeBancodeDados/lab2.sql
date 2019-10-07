@@ -16,40 +16,40 @@ primary key(codigo)
 )default charset = utf8;
 
 create table autor(
-id varchar(7),nome varchar(100),contato varchar(20),bio text,
+id smallint,nome varchar(100),contato varchar(20),biografia text,
 primary key(id)
 )default charset = utf8;
 
 create table autoria(
-id_autor varchar(7),cod_livro varchar(7)
+id_autor smallint,cod_livro varchar(7)
 )default charset = utf8;
 
 create table editora(
-id varchar(7),nome varchar(100),contato varchar(20),cnpj varchar(4),
+id smallint,nome varchar(100),contato varchar(20),cnpj varchar(19),
 primary key(id)
 )default charset = utf8;
 
 create table usuario(
-id varchar(7),nome varchar(100),contato varchar(20),cpf varchar(15),login varchar(20),senha varchar(5),avatar varchar(10),emprestimo varchar(10),
+id smallint,nome varchar(100),contato varchar(20),cpf varchar(15),login varchar(20),senha smallint,avatar varchar(10),emprestimo varchar(10),
 primary key(id)
 )default charset = utf8;
 
 create table funcionario(
-id varchar(7),nome varchar(100),contato varchar(20),cpf varchar(15),login varchar(20),senha varchar(5),foto varchar(10),cargo varchar(20),
+id smallint,nome varchar(100),contato varchar(20),cpf varchar(15),login varchar(50),senha varchar(6),cargo varchar(20),
 primary key(id)
 )default charset = utf8;
 
 create table emprestimo(
-codigo varchar(7),id_usuario varchar(7),id_funcionario varchar(7),datacao date,prazo varchar(15),codigo_exemplar varchar(7),renovacao date,
+codigo smallint,id_usuario smallint,id_funcionario smallint,data_in date, data_out date,prazo varchar(15),codigo_exemplar smallint,renovacao date,
 primary key(codigo)
 )default charset = utf8;
 
 create table devolucao(
-cod_emp varchar(7),id_func varchar(7),datacao date,multa float,observacao text
+cod_emprestimo smallint,id_funcionario smallint,data date,multa float,observacao text
 )default charset = utf8;
 
 create table reserva(
-cod_reserva varchar(7),id_usuario varchar(7),cod_livro varchar(7),datacao date,validade date,
+cod_reserva smallint,id_usuario smallint,cod_livro smallint,data_reserva date,validade date,
 primary key(cod_reserva)
 )default charset = utf8;
 
